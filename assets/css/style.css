@@ -1,0 +1,229 @@
+/* ---------- BASE ---------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  color: #111;
+  background-color: #EAEDED;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+
+/* ---------- HEADER ---------- */
+
+header {
+  background-color: #131921;
+  padding: 12px 24px;
+}
+
+.logo {
+  display: inline-block;
+  vertical-align: middle;
+  color: #FF9900;
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 24px;
+}
+
+/* ricerca */
+form {
+  display: inline-block;
+  vertical-align: middle;
+  width: 55%;
+}
+
+header input {
+  width: 80%;
+  padding: 8px;
+  border: none;
+  border-radius: 4px 0 0 4px;
+}
+
+header button {
+  background-color: #FEBD69;
+  padding: 8px 16px;
+  border-radius: 0 4px 4px 0;
+}
+
+/* nav */
+nav {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 24px;
+}
+
+nav a {
+  color: white;
+  margin-left: 16px;
+}
+
+#carrello {
+  background-color: #232F3E;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+
+/* ---------- HERO ---------- */
+
+.hero {
+  background-color: #303F51;
+  color: white;
+  text-align: center;
+  padding: 60px 24px;
+}
+
+h1 {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  font-size: 18px;
+}
+
+
+/* ---------- CATEGORIE ---------- */
+
+.categorie {
+  padding: 32px 24px;
+}
+
+.card-categoria {
+  display: inline-block;
+  vertical-align: top;
+  width: 23%;
+  margin-right: 1.5%;
+  background-color: white;
+  border-radius: 6px;
+}
+
+.card-categoria img {
+  width: 100%;
+  border-radius: 6px 6px 0 0;
+}
+
+.card-categoria h3 {
+  font-size: 16px;
+  padding: 12px 12px 0 12px;
+}
+
+.card-categoria a {
+  display: block;
+  padding: 4px 12px 12px 12px;
+  color: #007185;
+  font-size: 14px;
+}
+
+
+/* ---------- PRODOTTI ---------- */
+
+.prodotti {
+  padding: 0 24px 40px 24px;
+}
+
+.card-prodotto {
+  display: inline-block;
+  vertical-align: top;
+  width: 23%;
+  margin: 0 1.5% 20px 0;
+  padding: 14px;
+  background-color: white;
+  border-radius: 6px;
+}
+
+.card-prodotto img {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.card-prodotto h3 {
+  font-size: 14px;
+  font-weight: normal;
+  height: 42px;
+}
+
+.stelle {
+  color: #FF9900;
+  font-size: 14px;
+}
+
+.prezzo {
+  color: #B12704;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* bottone */
+.card-prodotto button {
+  width: 100%;
+  padding: 8px;
+  background-color: #FFD814;
+  border-radius: 20px;
+}
+
+.card-prodotto button:hover {
+  background-color: #F7CA00;
+}
+
+.card-prodotto button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #DDDDDD;
+}
+
+
+/* ---------- FOOTER ---------- */
+
+footer {
+  background-color: #232F3E;
+  color: white;
+  padding: 40px 24px;
+}
+
+.colonna-footer {
+  display: inline-block;
+  vertical-align: top;
+  width: 32%;
+}
+
+h4 {
+  margin-bottom: 12px;
+}
+
+footer ul {
+  list-style: none;
+}
+
+footer li {
+  margin-bottom: 8px;
+  font-size: 14px;
+}

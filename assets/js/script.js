@@ -17,7 +17,26 @@ REGOLE
    - una variabile per la stringa di ricerca corrente
 */
 
-/* SCRIVI QUI LA TUA RISPOSTA */
+let film = [
+  { id: 1, titolo: "Inception", regista: "Christopher Nolan", voto: 5 },
+  { id: 2, titolo: "Il Padrino", regista: "Francis Ford Coppola", voto: 5 },
+  { id: 3, titolo: "Shrek", regista: "Andrew Adamson", voto: 3 }
+];
+let ricerca = "";
+
+const form = document.getElementById("form-film");
+const inputTitolo = document.getElementById("titolo");
+const inputRegista = document.getElementById("regista");
+const inputVoto = document.getElementById("voto");
+const paragrafoErrore = document.getElementById("errore");
+const inputRicerca = document.getElementById("ricerca");
+const lista = document.getElementById("lista");
+const btnTema = document.getElementById("btn-tema");
+const statTotale = document.getElementById("stat-totale");
+const statMedia = document.getElementById("stat-media");
+const statPercentuale = document.getElementById("stat-percentuale");
+const barraPiene = document.getElementById("barra-piene");
+
 
 
 /* RENDER()
@@ -31,7 +50,66 @@ REGOLE
    Salva lo stato in localStorage in fondo a render() (cerca tu come funziona).
 */
 
-/* SCRIVI QUI LA TUA RISPOSTA */
+function render() {
+  // parto dall'array completo e tengo solo i film che contengono il testo cercato
+  const testoCercato = ricerca.toLowerCase();
+  const visibili = film.filter(function (f) {
+    return (
+      f.titolo.toLowerCase().includes(testoCercato) ||
+      f.regista.toLowerCase().includes(testoCercato)
+    );
+  });
+
+  // svuoto il container e ricreo una card per ogni film
+  lista.innerHTML = "";
+
+  if (visibili.length === 0) {
+    const vuoto = document.createElement("p");
+    vuoto.classList.add("vuoto");
+    vuoto.textContent = "Nessun film trovato.";
+    lista.appendChild(vuoto);
+  }
+
+  visibili.forEach(function (f) {
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    const titolo = document.createElement("h3");
+    titolo.textContent = f.titolo;
+
+    const regista = document.createElement("p");
+    regista.classList.add("regista");
+    regista.textContent = f.regista;
+
+    const voto = document.createElement("p");
+    voto.classList.add("voto");
+    voto.textContent = "★".repeat(f.voto) + " (" + f.voto + "/5)";
+
+    const azioni = document.createElement("div");
+    azioni.classList.add("azioni");
+
+    const btnModifica = document.createElement("button");
+    btnModifica.textContent = "Modifica";
+    btnModifica.setAttribute("data-azione", "modifica");
+    btnModifica.setAttribute("data-id", f.id);
+
+    const btnElimina = document.createElement("button");
+    btnElimina.textContent = "Elimina";
+    btnElimina.setAttribute("data-azione", "elimina");
+    btnElimina.setAttribute("data-id", f.id);
+
+    azioni.appendChild(btnModifica);
+    azioni.appendChild(btnElimina);
+    card.appendChild(titolo);
+    card.appendChild(regista);
+    card.appendChild(voto);
+    card.appendChild(azioni);
+    lista.appendChild(card);
+  });
+
+  localStorage.setItem("film", JSON.stringify(film));
+}
+
 
 
 /* FORM CON VALIDAZIONE
@@ -90,7 +168,11 @@ REGOLE
        if (salvato) stato = JSON.parse(salvato);
 */
 
-/* SCRIVI QUI LA TUA RISPOSTA */
+const salvato = localStorage.getItem("film");
+if (salvato) {
+  film = JSON.parse(salvato);
+}
+
 
 
 /* RIORDINO ↑ ↓
@@ -124,3 +206,6 @@ REGOLE
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+
+
+render();

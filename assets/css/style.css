@@ -198,3 +198,49 @@ footer {
 footer a:hover {
   color: var(--accento);
 }
+
+body.dark {
+  --sfondo: #15151c;
+  --carta: #22222d;
+  --testo: #f1f1f5;
+  --testo-tenue: #a0a0b4;
+  --bordo: #33333f;
+}
+
+.contatori {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 14px;
+}
+
+.contatore strong {
+  display: block;
+  font-size: 2rem;
+  color: var(--accento);
+  line-height: 1.1;
+}
+
+.contatore span, .barra-etichetta {
+  color: var(--testo-tenue);
+  font-size: 0.85rem;
+}
+
+.barra-etichetta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.barra {
+  height: 12px;
+  background: var(--bordo);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+#barra-piene {
+  height: 100%;
+  width: 0%;
+  background: var(--accento);
+  transition: width 0.3s;
+}

@@ -107,6 +107,22 @@ function render() {
     lista.appendChild(card);
   });
 
+  // statistiche, calcolate sull'array completo
+  const totale = film.length;
+  const sommaVoti = film.reduce(function (somma, f) {
+    return somma + f.voto;
+  }, 0);
+  const media = totale === 0 ? 0 : sommaVoti / totale;
+  const piaciuti = film.filter(function (f) {
+    return f.voto >= 4;
+  }).length;
+  const percentuale = totale === 0 ? 0 : Math.round((piaciuti / totale) * 100);
+
+  statTotale.textContent = totale;
+  statMedia.textContent = media.toFixed(1);
+  statPercentuale.textContent = percentuale + "%";
+  barraPiene.style.width = percentuale + "%";
+
   localStorage.setItem("film", JSON.stringify(film));
 }
 
@@ -250,7 +266,16 @@ inputRicerca.addEventListener("input", function () {
    In CSS scrivi le regole opposte (es. body.dark { background: #111; ... }).
 */
 
-/* SCRIVI QUI LA TUA RISPOSTA */
+btnTema.addEventListener("click", function () {
+  document.body.classList.toggle("dark");
+
+  if (document.body.classList.contains("dark")) {
+    btnTema.textContent = "Tema chiaro";
+  } else {
+    btnTema.textContent = "Tema scuro";
+  }
+});
+
 
 
 /* PERSISTENZA — localStorage (cerca tu su MDN)

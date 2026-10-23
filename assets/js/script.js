@@ -121,7 +121,37 @@ function render() {
    Id univoco con Date.now().
 */
 
-/* SCRIVI QUI LA TUA RISPOSTA */
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const titolo = inputTitolo.value.trim();
+  const regista = inputRegista.value.trim();
+  const voto = Number(inputVoto.value);
+
+  if (titolo === "" || regista === "" || inputVoto.value.trim() === "") {
+    paragrafoErrore.textContent = "Compila tutti i campi.";
+    return;
+  }
+
+  if (!Number.isInteger(voto) || voto < 1 || voto > 5) {
+    paragrafoErrore.textContent = "Il voto deve essere un numero intero da 1 a 5.";
+    return;
+  }
+
+  paragrafoErrore.textContent = "";
+
+  const nuovoFilm = {
+    id: Date.now(),
+    titolo: titolo,
+    regista: regista,
+    voto: voto
+  };
+
+  film.push(nuovoFilm);
+  form.reset();
+  render();
+});
+
 
 
 /* INTERAZIONI BASE — eliminare, modificare, contare
@@ -131,7 +161,66 @@ function render() {
    - Conteggi dinamici dentro render().
 */
 
-/* SCRIVI QUI LA TUA RISPOSTA */
+// event delegation: un solo listener sul container per Modifica ed Elimina
+lista.addEventListener("click", function (event) {
+  const cliccato = event.target;
+  const azione = cliccato.getAttribute("data-azione");
+
+  if (azione === null) {
+    return;
+  }
+
+  const id = Number(cliccato.getAttribute("data-id"));
+
+  if (azione === "elimina") {
+    film = film.filter(function (f) {
+      return f.id !== id;
+    });
+    render();
+  }
+
+  if (azione === "modifica") {
+    modificaTitolo(cliccato, id);
+  }
+});
+
+function modificaTitolo(bottone, id) {
+  const card = bottone.parentElement.parentElement;
+  const titolo = card.querySelector("h3");
+
+  const filmDaModificare = film.find(function (f) {
+    return f.id === id;
+  });
+
+  const input = document.createElement("input");
+  input.value = filmDaModificare.titolo;
+  card.replaceChild(input, titolo);
+  input.focus();
+
+  // con Invio render() toglie l'input e scatta anche blur: evito la doppia conferma
+  let confermato = false;
+
+  function conferma() {
+    if (confermato) {
+      return;
+    }
+    confermato = true;
+
+    const nuovoTitolo = input.value.trim();
+    if (nuovoTitolo !== "") {
+      filmDaModificare.titolo = nuovoTitolo;
+    }
+    render();
+  }
+
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      conferma();
+    }
+  });
+  input.addEventListener("blur", conferma);
+}
+
 
 
 /* RICERCA, FILTRO, ORDINAMENTO
@@ -141,7 +230,11 @@ function render() {
    I tre si compongono dentro render() in fila.
 */
 
-/* SCRIVI QUI LA TUA RISPOSTA */
+inputRicerca.addEventListener("input", function () {
+  ricerca = inputRicerca.value.trim();
+  render();
+});
+
 
 
 /* NOTIFICHE TEMPORANEE
